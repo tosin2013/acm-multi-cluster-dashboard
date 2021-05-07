@@ -1,6 +1,6 @@
 # Requirements for OpenShift 3.11 Clusters
 
-**Upgrade your 3.11.x to a 3.11.200 and up**
+**Upgrade your 3.11.x version  to a version that is 3.11.200 and up**
 
 **Hosts file example**
 ```
