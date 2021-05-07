@@ -20,7 +20,7 @@ $ curl -OL https://raw.githubusercontent.com/tosin2013/openshift-4-deployment-no
 $ chmod +x configure-openshift-packages.sh
 $ ./configure-openshift-packages.sh -i
 ```
-> Use the updated oc client adn kubectl to run the import command for the 3.11 cluster. 
+> Use the updated oc client and kubectl to run the import command for the 3.11 cluster. 
 
 **For Disconnected Environments udpate the RHACM repo endpoints**
 * [Set Custom Image endpoints for ACM Deployments](https://github.com/tosin2013/openshift-4-deployment-notes/blob/master/acm/set-custom-repo-endpoints.md)
