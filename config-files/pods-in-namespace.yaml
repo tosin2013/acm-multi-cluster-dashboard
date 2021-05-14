@@ -5,6 +5,7 @@ metadata:
   namespace: open-cluster-management-observability
   labels:
     grafana-custom-dashboard: "true"
+    customer_dept_code: abc
 data:
   pods-in-namespace.json: |
     {
