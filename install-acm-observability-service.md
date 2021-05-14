@@ -84,6 +84,13 @@ YAML
 oc apply -f multiclusterobservability_cr.yaml
 ```
 
+**Add read-only users to dashboard**
+``` 
+USERNAME=user
+oc adm policy add-cluster-role-to-user cluster-monitoring-view  ${USERNAME}
+oc adm policy add-cluster-role-to-user advanced-cluster-management-view ${USERNAME}
+oc adm policy add-cluster-role-to-user cluster-monitoring-view ${USERNAME}
+```
 
 ## Reference Link
 * [OBSERVING ENVIRONMENTS](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html/observing_environments/index)
