@@ -89,7 +89,6 @@ oc apply -f multiclusterobservability_cr.yaml
 USERNAME=user
 oc adm policy add-cluster-role-to-user cluster-monitoring-view  ${USERNAME}
 oc adm policy add-cluster-role-to-user advanced-cluster-management-view ${USERNAME}
-oc adm policy add-cluster-role-to-user cluster-monitoring-view ${USERNAME}
 ```
 
 ## Reference Link
