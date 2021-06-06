@@ -5,7 +5,7 @@ metadata:
   namespace: open-cluster-management-observability
   labels:
     grafana-custom-dashboard: "true"
-data: 
+data:
   acm-resource-optimization-cluster-1-3-11.json: |
     {
       "annotations": {
@@ -25,7 +25,7 @@ data:
       "gnetId": null,
       "graphTooltip": 0,
       "id": 28,
-      "iteration": 1622564618942,
+      "iteration": 1622822074741,
       "links": [],
       "panels": [
         {
@@ -580,7 +580,7 @@ data:
           "pluginVersion": "7.1.3",
           "showHeader": true,
           "sort": {
-            "col": 2,
+            "col": 4,
             "desc": true
           },
           "styles": [
@@ -602,7 +602,7 @@ data:
               "decimals": null,
               "link": true,
               "linkTooltip": "Drill down to pods",
-              "linkUrl": "./d/OOiJ3slMz/kubernetes-compute-resources-namespace-pods?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell_1",
+              "linkUrl": "./d/9M5qKeqMz/kubernetes-compute-resources-namespace-pods-3-11?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell_1",
               "mappingType": 1,
               "pattern": "Value #A",
               "thresholds": [],
@@ -621,7 +621,7 @@ data:
               "decimals": 2,
               "link": true,
               "linkTooltip": "Drill down to pods",
-              "linkUrl": "./d/OOiJ3slMz/kubernetes-compute-resources-namespace-pods?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell_1",
+              "linkUrl": "./d/9M5qKeqMz/kubernetes-compute-resources-namespace-pods-3-11??var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell_2",
               "mappingType": 1,
               "pattern": "namespace",
               "thresholds": [],
@@ -691,9 +691,79 @@ data:
               "thresholds": [],
               "type": "number",
               "unit": "short"
+            },
+            {
+              "alias": "Department",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "label_dept",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #F",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            },
+            {
+              "alias": "CPU Limits",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #G",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "alias": "Max CPU Utilization",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 4,
+              "mappingType": 1,
+              "pattern": "Value #H",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
             }
           ],
           "targets": [
+            {
+              "expr": "count(kube_namespace_labels{label_dept=~\".+\",cluster=\"$cluster\"}) by (namespace,label_dept)",
+              "format": "table",
+              "instant": true,
+              "refId": "F"
+            },
             {
               "expr": "((sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\"}) by (namespace))-(sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\"}) by (namespace))) or ((sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\"}) by (namespace))-(sum(namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\"}) by (namespace)))",
               "format": "table",
@@ -737,11 +807,23 @@ data:
               "legendFormat": "",
               "refId": "A",
               "step": 10
+            },
+            {
+              "expr": "sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\"}) by (namespace)",
+              "format": "table",
+              "instant": true,
+              "refId": "G"
+            },
+            {
+              "expr": "max_over_time(sum(namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\"}) by (namespace)[$__range:])",
+              "format": "table",
+              "instant": true,
+              "refId": "H"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "CPU Usage",
+          "title": "CPU Usage by Namespace",
           "transform": "table",
           "transformations": [
             {
@@ -1429,7 +1511,7 @@ data:
               "decimals": 2,
               "link": true,
               "linkTooltip": "Drill down to pods",
-              "linkUrl": "./d/OOiJ3slMz/kubernetes-compute-resources-namespace-pods?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell",
+              "linkUrl": "./d/9M5qKeqMz/kubernetes-compute-resources-namespace-pods-3-11?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$__cell_2",
               "mappingType": 1,
               "pattern": "namespace",
               "thresholds": [],
@@ -1451,9 +1533,86 @@ data:
               "thresholds": [],
               "type": "number",
               "unit": "bytes"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #F",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            },
+            {
+              "alias": "Department",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "label_dept",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "alias": "MemoryLimits",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #G",
+              "thresholds": [],
+              "type": "number",
+              "unit": "bytes"
+            },
+            {
+              "alias": "Max Memory Usage",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #H",
+              "thresholds": [],
+              "type": "number",
+              "unit": "bytes"
             }
           ],
           "targets": [
+            {
+              "expr": "count(kube_namespace_labels{label_dept=~\".+\",cluster=\"$cluster\"}) by (namespace,label_dept)",
+              "format": "table",
+              "instant": true,
+              "refId": "F"
+            },
+            {
+              "expr": "(sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace))-(sum(container_memory_rss{cluster=\"$cluster\", container!=\"\"}) by (namespace)) or ((sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace))-(sum(container_memory_rss{cluster=\"$cluster\", container_name!=\"\"}) by (namespace)))",
+              "format": "table",
+              "instant": true,
+              "intervalFactor": 2,
+              "refId": "B"
+            },
             {
               "expr": "(sum(container_memory_rss{cluster=\"$cluster\", container!=\"\"}) by (namespace) / sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace)) or (sum(container_memory_rss{cluster=\"$cluster\", container_name!=\"\"}) by (namespace) / sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace))",
               "format": "table",
@@ -1491,16 +1650,21 @@ data:
               "step": 10
             },
             {
-              "expr": "(sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace))-(sum(container_memory_rss{cluster=\"$cluster\", container!=\"\"}) by (namespace)) or ((sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\"}) by (namespace))-(sum(container_memory_rss{cluster=\"$cluster\", container_name!=\"\"}) by (namespace)))",
+              "expr": "sum(kube_pod_container_resource_limits_memory_bytes{cluster=\"$cluster\"}) by (namespace)",
               "format": "table",
               "instant": true,
-              "intervalFactor": 2,
-              "refId": "B"
+              "refId": "G"
+            },
+            {
+              "expr": "max_over_time(sum(container_memory_rss{cluster=\"$cluster\",container_name!=\"\"}) by (namespace) [$__range:])",
+              "format": "table",
+              "instant": true,
+              "refId": "H"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Requests by Namespace",
+          "title": "Memory Usage by Namespace",
           "transform": "table",
           "transformations": [
             {
@@ -1601,5 +1765,5 @@ data:
       "timezone": "browser",
       "title": "ACM - Resource Optimization / Cluster-1-3.11",
       "uid": "7Rm6ZjqGk",
-      "version": 7
+      "version": 22
     }

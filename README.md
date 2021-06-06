@@ -96,8 +96,26 @@ Namespaces in cluster
 oc create -f config-files/namespaces-in-cluster.yaml
 ```
 
+### ACM - Resource Optimization / Cluster-1-3.11
+![ACM - Resource Optimization / Cluster-1-3.11](images/acm-resource-optimization-cluster-1-3-11-cpu.png)
+![ACM - Resource Optimization / Cluster-1-3.11](images/acm-resource-optimization-cluster-1-3-11-memory.png)
+
+Create ACM - Resource Optimization / Cluster-1-3.11 dashboard
+```
+oc create -f config-files/config-files/acm-resource-optimization-cluster-1-3-11.yaml
+```
+
+
+### Kubernetes / Compute Resources / Namespace (Pods) - 3.11 
+![Kubernetes / Compute Resources / Namespace (Pods) - 3.11](images/kubernetes-compute-resources-namespace-pods-3-11.png)
+
+Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard
+```
+oc create -f config-files/kubernetes-compute-resources-namespace-pods-3-11.yaml
+```
+
 ### WIP Capacity Planning 3.11 
-*Still working on this example I have not fully tested the Current Memory Usagae and Current CPU Usage in Cluster*
+*Still working on this example I have not fully tested the Current Memory Usage and Current CPU Usage in Cluster*
 ![WIP Capacity Planning 3.11](images/capacity-planning-3.11.png)
 
 WIP Capacity Planning 3.11 

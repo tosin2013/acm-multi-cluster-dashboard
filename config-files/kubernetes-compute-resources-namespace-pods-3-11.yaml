@@ -5,7 +5,8 @@ metadata:
   namespace: open-cluster-management-observability
   labels:
     grafana-custom-dashboard: "true"
-data: 
+    customer_dept_code: abc
+data:
   kubernetes-compute-resources-namespace-pods-3-11.json: |
     {
       "annotations": {

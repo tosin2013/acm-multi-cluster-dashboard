@@ -1,6 +1,11 @@
 # Install MultiCluster Observability  
- 
-**Run the following command:**
+
+**Create open-cluster-management-observability  project** 
+```
+oc new-project open-cluster-management-observability 
+```
+
+**Run the following command to create pull secret:**
 ```
 DOCKER_CONFIG_JSON=`oc extract secret/pull-secret -n openshift-config --to=-`
 oc create secret generic multiclusterhub-operator-pull-secret \
