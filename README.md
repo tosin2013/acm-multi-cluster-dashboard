@@ -62,6 +62,7 @@ data:
       - namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate
       - kube_namespace_labels
       - container_memory_rss
+      - kube_namespace_labels
 YAML
 ```
 **Apply config map against RHACM**
