@@ -27,7 +27,7 @@ data:
       "gnetId": 12117,
       "graphTooltip": 0,
       "id": 30,
-      "iteration": 1622653852284,
+      "iteration": 1623087403153,
       "links": [],
       "panels": [
         {
@@ -807,7 +807,7 @@ data:
           "seriesOverrides": [],
           "showHeader": true,
           "sort": {
-            "col": 0,
+            "col": 5,
             "desc": true
           },
           "spaceLength": 10,
@@ -912,6 +912,22 @@ data:
               "unit": "short"
             },
             {
+              "alias": "Max CPU Utilization",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 4,
+              "mappingType": 1,
+              "pattern": "Value #F",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            },
+            {
               "alias": "",
               "align": "auto",
               "colorMode": null,
@@ -973,6 +989,12 @@ data:
               "legendFormat": "",
               "refId": "E",
               "step": 10
+            },
+            {
+              "expr": "max_over_time(sum(label_replace(namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", namespace=\"$namespace\"}, \"pod\", \"$1\", \"pod_name\", \"(.*)\")) by (pod)[$__range:])",
+              "format": "table",
+              "instant": true,
+              "refId": "F"
             }
           ],
           "thresholds": [],
@@ -1363,6 +1385,22 @@ data:
               "unit": "short"
             },
             {
+              "alias": "Max Memory Usage",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "mappingType": 1,
+              "pattern": "Value #I",
+              "thresholds": [],
+              "type": "number",
+              "unit": "bytes"
+            },
+            {
               "alias": "",
               "align": "auto",
               "colorMode": null,
@@ -1422,7 +1460,7 @@ data:
               "step": 10
             },
             {
-              "expr": "sum(container_memory_rss{cluster=\"$cluster\", namespace=\"$namespace\",container_name!=\"\"}) by (pod)",
+              "expr": "sum(label_replace(container_memory_rss{cluster=\"$cluster\", namespace=\"$namespace\",container_name!=\"\"}, \"pod\", \"$1\", \"pod_name\", \"(.*)\")) by (pod)",
               "format": "table",
               "instant": true,
               "intervalFactor": 1,
@@ -1447,6 +1485,12 @@ data:
               "legendFormat": "",
               "refId": "H",
               "step": 10
+            },
+            {
+              "expr": "max_over_time(sum(label_replace(container_memory_rss{cluster=\"$cluster\", namespace=\"$namespace\",container_name!=\"\"}, \"pod\", \"$1\", \"pod_name\", \"(.*)\")) by (pod)[$__range:])",
+              "format": "table",
+              "instant": true,
+              "refId": "I"
             }
           ],
           "thresholds": [],
@@ -2422,6 +2466,7 @@ data:
         "list": [
           {
             "current": {
+              "selected": true,
               "text": "Observatorium",
               "value": "Observatorium"
             },
@@ -2440,7 +2485,7 @@ data:
           {
             "allValue": null,
             "current": {
-              "tags": [],
+              "selected": false,
               "text": "ups-ocp",
               "value": "ups-ocp"
             },
@@ -2466,9 +2511,9 @@ data:
           {
             "allValue": null,
             "current": {
-              "tags": [],
-              "text": "open-cluster-management-agent",
-              "value": "open-cluster-management-agent"
+              "selected": false,
+              "text": "open-cluster-management-agent-addon",
+              "value": "open-cluster-management-agent-addon"
             },
             "datasource": "$datasource",
             "definition": "",
@@ -2520,5 +2565,5 @@ data:
       "timezone": "",
       "title": "Kubernetes / Compute Resources / Namespace (Pods) - 3.11",
       "uid": "9M5qKeqMz",
-      "version": 13
+      "version": 16
     }
