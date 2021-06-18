@@ -21,6 +21,14 @@ echo https://multicloud-console.$(oc get ingresses.config.openshift.io cluster -
 **Design your grafana dashboard**  
 * [Design your grafana dashboard](https://github.com/open-cluster-management/multicluster-observability-operator/tree/main/tools)
 
+## Clone Repo
+```
+![kubernetes-compute-resources-namespace-pods-3-11](https://user-images.githubusercontent.com/1975599/122592121-e6dab580-d031-11eb-9d24-ac186464a960.png)
+git clone https://github.com/tosin2013/acm-multi-cluster-dashboard.git
+```
+
+## login to ACM cluster via oc command line
+
 ## Custom Dashboard Examples
 The dashboards below are custom dashboards that display OpenShift 3.11 clusters within an environment. 
 
@@ -76,6 +84,11 @@ oc apply -n open-cluster-management-observability -f observability-metrics-custo
 ## Dashboard List 
 > All the command beow need to be ran against the RHACM cluster in order to be shown on the grafana dashboard. 
 
+### Load all dashboards
+```
+oc create -f config-files/
+```
+
 ### Summary By Node 
 ![Summary By Node](images/summary-by-node.png)
 
@@ -109,9 +122,9 @@ Create ACM - Resource Optimization / Cluster-1-3.11 dashboard
 oc create -f config-files/config-files/acm-resource-optimization-cluster-1-3-11.yaml
 ```
 
-
 ### Kubernetes / Compute Resources / Namespace (Pods) - 3.11 
-![Kubernetes / Compute Resources / Namespace (Pods) - 3.11](images/kubernetes-compute-resources-namespace-pods-3-11.new.png
+![kubernetes-compute-resources-namespace-pods-3-11](https://user-images.githubusercontent.com/1975599/122592197-f9ed8580-d031-11eb-885f-b4b58ebb19cd.png)
+
 
 Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard)
 ```
@@ -121,7 +134,7 @@ oc create -f config-files/kubernetes-compute-resources-namespace-pods-3-11.yaml
 ###  Capacity Planning 3.11 
 ![capacity-management](https://user-images.githubusercontent.com/1975599/122591100-7d0ddc00-d030-11eb-8b9e-ca9b7484c05c.png)
 
-WIP Capacity Planning 3.11 
+Capacity Planning 3.11 
 ```
 oc create -f config-files/capacity-planning-3.11.yaml
 ```
