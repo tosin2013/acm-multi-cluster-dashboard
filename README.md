@@ -63,6 +63,9 @@ data:
       - kube_namespace_labels
       - container_memory_rss
       - kube_namespace_labels
+      - kube_pod_info
+      - container_cpu_usage_seconds_total
+      - kube_node_status_allocatable_cpu_cores
 YAML
 ```
 **Apply config map against RHACM**
@@ -108,9 +111,9 @@ oc create -f config-files/config-files/acm-resource-optimization-cluster-1-3-11.
 
 
 ### Kubernetes / Compute Resources / Namespace (Pods) - 3.11 
-![Kubernetes / Compute Resources / Namespace (Pods) - 3.11](images/kubernetes-compute-resources-namespace-pods-3-11.png)
+![Kubernetes / Compute Resources / Namespace (Pods) - 3.11](images/kubernetes-compute-resources-namespace-pods-3-11.new.png
 
-Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard
+Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard)
 ```
 oc create -f config-files/kubernetes-compute-resources-namespace-pods-3-11.yaml
 ```

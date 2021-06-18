@@ -37,33 +37,17 @@ $ oc login
 
 
 ## Capacity Planning Dashboard requirements
+
 > For the Capacity Planning dashboard to work you must configure custom dashboarding.
+
+You can configure the OpenShift state metrics on an OPenShift 3.11 cluster using the following command 
+```
+oc create -f openshift-state-metics/
+```
 
 [Getting Started with Custom Dashboarding on OpenShift using Grafana](https://github.com/redhat-cop/openshift-toolkit/tree/master/custom-dashboards)
 
 An [OpenShift Applier](https://github.com/redhat-cop/openshift-applier) inventory has been supplied for deployment convenience. Two playbooks are also provided. The first is to deploy the OpenShift Monitoring stack, using [openshift-ansible](https://github.com/openshift/openshift-ansible), the second deploys the custom Grafana.
-
-1. First, you must download the prerequsite repositories, [OpenShift Ansible](https://github.com/openshift/openshift-ansible), and [OpenShift Applier](https://github.com/redhat-cop/openshift-applier).
-        
-        git clone https://github.com/redhat-cop/openshift-toolkit
-        cd openshift-toolkit/custom-dashboards
-        ansible-galaxy install -r requirements.yml -p galaxy
-
-
-2. (Optional) If you are running on an OpenShift Cluster older than 3.11, or your cluster did not have the monitoring stack installed at first install, you can use the following command to install the monitoring stack:
-
-        ansible-playbook -i /path/to/cluster/inventory/ monitoring.yml
-
-3. Finally, run the apply.yml playbook to deploy Grafana and all of the Dashboards.
-
-        ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml
-
-4. Now install the dashboard-capacity 
-
-        ansible-galaxy install -r requirements.yml -p galaxy
-        ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml \
-        -e include_tags="dashboard-capacity,openshift-3"
-
 
 ## Links:  
 * [Troubleshooting cluster with pending import status](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html/troubleshooting/troubleshooting#troubleshooting-cluster-with-pending-import-status)
