@@ -40,16 +40,21 @@ $ oc login
 
 > For the Capacity Planning dashboard to work you must configure custom dashboarding.
 
-You can configure the OpenShift state metrics on an OPenShift 3.11 cluster using the following command 
+You can configure the OpenShift state metrics on an OpenShift 3.11 cluster using the following command. That can be ran on the master node.
 ```
-oc create -f openshift-state-metics/
+oc create -f openshift-state-metrics/
 ```
 
-[Getting Started with Custom Dashboarding on OpenShift using Grafana](https://github.com/redhat-cop/openshift-toolkit/tree/master/custom-dashboards)
+**Create sample application for cluster resource dashboard**  
 
-An [OpenShift Applier](https://github.com/redhat-cop/openshift-applier) inventory has been supplied for deployment convenience. Two playbooks are also provided. The first is to deploy the OpenShift Monitoring stack, using [openshift-ansible](https://github.com/openshift/openshift-ansible), the second deploys the custom Grafana.
+[Sample application used for ClusterQuota Dashboard](https://github.com/tosin2013/acm-multi-cluster-dashboard/tree/main/demo-application)  
+
+# other notes and links
+
+
 
 ## Links:  
+[Getting Started with Custom Dashboarding on OpenShift using Grafana](https://github.com/redhat-cop/openshift-toolkit/tree/master/custom-dashboards)
 * [Troubleshooting cluster with pending import status](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html/troubleshooting/troubleshooting#troubleshooting-cluster-with-pending-import-status)
 * [Capacity Management Dashboard](https://github.com/redhat-cop/openshift-toolkit/tree/master/capacity-dashboard)
 * [Getting Started with Custom Dashboarding on OpenShift using Grafana](https://github.com/redhat-cop/openshift-toolkit/tree/master/custom-dashboards)
