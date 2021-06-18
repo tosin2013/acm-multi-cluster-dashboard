@@ -118,9 +118,8 @@ Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard)
 oc create -f config-files/kubernetes-compute-resources-namespace-pods-3-11.yaml
 ```
 
-### WIP Capacity Planning 3.11 
-*Still working on this example I have not fully tested the Current Memory Usage and Current CPU Usage in Cluster*
-![WIP Capacity Planning 3.11](images/capacity-planning-3.11.png)
+###  Capacity Planning 3.11 
+![capacity-management](https://user-images.githubusercontent.com/1975599/122591100-7d0ddc00-d030-11eb-8b9e-ca9b7484c05c.png)
 
 WIP Capacity Planning 3.11 
 ```
