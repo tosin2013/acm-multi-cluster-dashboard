@@ -34,6 +34,7 @@ aws s3 mb s3://thanos-object-storage
 
 
 **For Amazon S3 or S3 compatible**
+> For other storage classes see documentation 
 ```
 apiVersion: v1
 kind: Secret
@@ -51,9 +52,7 @@ stringData:
       secret_key: YOUR_SECRET_KEY
 ```
 
-
-
-**Create Secert**
+**Create Secret**
 ```
 oc create -f thanos-object-storage.yaml -n open-cluster-management-observability
 ```
@@ -61,7 +60,7 @@ oc create -f thanos-object-storage.yaml -n open-cluster-management-observability
 **Create the MultiClusterObservability custom resource YAML**
 ```
 cat >multiclusterobservability_cr.yaml<<YAML
-apiVersion: observability.open-cluster-management.io/v1beta1
+apiVersion: observability.open-cluster-management.io/v1beta2
 kind: MultiClusterObservability
 metadata:
   name: observability #Your customized name of MulticlusterObservability CR
@@ -97,4 +96,4 @@ oc adm policy add-cluster-role-to-user advanced-cluster-management-view ${USERNA
 ```
 
 ## Reference Link
-* [OBSERVING ENVIRONMENTS](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html/observing_environments/index)
+* [OBSERVING ENVIRONMENTS](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html/observability/index)
