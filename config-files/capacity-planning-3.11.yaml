@@ -102,7 +102,7 @@ data:
       "tableColumn": "",
       "targets": [
       {
-      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_left () openshift_clusterresourcequota_usage{resource=\"requests.memory\",type=\"hard\"}) by (cluster))/(sum (kube_node_labels{cluster=\"$cluster\"} * on (node) group_left () kube_node_status_allocatable_memory_bytes) by (cluster))",
+      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_right () openshift_clusterresourcequota_usage{resource=\"requests.memory\",type=\"hard\"}) by (cluster))/(sum (kube_node_labels{cluster=\"$cluster\"} * on (node) group_right () kube_node_status_allocatable_memory_bytes) by (cluster))",
       "format": "time_series",
       "intervalFactor": 1,
       "legendFormat": "",
@@ -348,7 +348,7 @@ data:
       "tableColumn": "",
       "targets": [
       {
-      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_left () openshift_clusterresourcequota_usage{resource=\"requests.memory\",type=\"hard\"}) by (cluster))",
+      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_right () openshift_clusterresourcequota_usage{cluster=\"$cluster\",resource=\"requests.memory\",type=\"hard\"}) by (cluster))",
       "format": "time_series",
       "intervalFactor": 1,
       "legendFormat": "",
@@ -605,7 +605,7 @@ data:
       "tableColumn": "",
       "targets": [
       {
-      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_left () openshift_clusterresourcequota_usage{resource=\"requests.cpu\",type=\"hard\"}) by (cluster))/(sum (kube_node_labels{cluster=\"$cluster\"} * on (node) group_left () kube_node_status_allocatable_cpu_cores) by (cluster))",
+      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_right () openshift_clusterresourcequota_usage{resource=\"requests.cpu\",type=\"hard\"}) by (cluster))/(sum (kube_node_labels{cluster=\"$cluster\"} * on (node) group_right () kube_node_status_allocatable_cpu_cores) by (cluster))",
       "format": "time_series",
       "intervalFactor": 1,
       "legendFormat": "",
@@ -851,7 +851,7 @@ data:
       "tableColumn": "",
       "targets": [
       {
-      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_left () openshift_clusterresourcequota_usage{resource=\"requests.cpu\",type=\"hard\"}) by (cluster))",
+      "expr": "(sum (openshift_clusterresourcequota_labels{cluster=\"$cluster\"} * on (name) group_right () openshift_clusterresourcequota_usage{cluster=\"$cluster\",resource=\"requests.cpu\",type=\"hard\"}) by (cluster))",
       "format": "time_series",
       "intervalFactor": 1,
       "legendFormat": "",

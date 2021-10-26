@@ -143,3 +143,4 @@ oc create -f config-files/capacity-planning-3.11.yaml
 * https://github.com/bszeti/openshift-grafana-dashboards
 * https://github.com/redhat-cop/openshift-toolkit/tree/master/capacity-dashboard
 * [OBSERVING ENVIRONMENTS](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html-single/observing_environments/index)
+* https://iximiuz.com/en/posts/prometheus-vector-matching/
