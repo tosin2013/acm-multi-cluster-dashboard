@@ -1723,8 +1723,10 @@ data:
           {
             "allValue": null,
             "current": {
-              "text": "ups-ocp",
-              "value": "ups-ocp"
+            "text": "All",
+            "value": [
+                        "$__all"
+                      ]
             },
             "datasource": "$datasource",
             "definition": "label_values(node_cpu_seconds_total,cluster)",
