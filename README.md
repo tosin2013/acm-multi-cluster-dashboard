@@ -130,6 +130,13 @@ Create Kubernetes / Compute Resources / Namespace (Pods) - 3.11 dashboard)
 ```
 oc create -f config-files/kubernetes-compute-resources-namespace-pods-3-11.yaml
 ```
+### Kubernetes / Compute Resources / Pod - 3.11
+![20211214163836](https://i.imgur.com/MaZ2Tf3.png)
+
+Kubernetes / Compute Resources / Pod - 3.11
+```
+oc create -f config-files/compute-resources-pod-3.11.yaml
+```
 
 ###  Capacity Planning 3.11 
 ![capacity-management](https://user-images.githubusercontent.com/1975599/122591100-7d0ddc00-d030-11eb-8b9e-ca9b7484c05c.png)

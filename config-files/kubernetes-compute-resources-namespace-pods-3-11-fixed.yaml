@@ -18,6 +18,12 @@ data:
             "hide": true,
             "iconColor": "rgba(0, 211, 255, 1)",
             "name": "Annotations & Alerts",
+            "target": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            },
             "type": "dashboard"
           }
         ]
@@ -26,8 +32,8 @@ data:
       "editable": true,
       "gnetId": 12117,
       "graphTooltip": 0,
-      "id": 30,
-      "iteration": 1623087403153,
+      "id": 21,
+      "iteration": 1639517642230,
       "links": [],
       "panels": [
         {
@@ -46,28 +52,45 @@ data:
           "type": "row"
         },
         {
-          "aliasColors": {},
-          "bars": false,
           "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "dashLength": 10,
-          "dashes": false,
           "datasource": "$datasource",
-          "decimals": 3,
-          "fill": 1,
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 3,
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "No Data"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 70
+                  },
+                  {
+                    "color": "#d44a3a",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
           },
           "gridPos": {
             "h": 3,
@@ -77,61 +100,24 @@ data:
           },
           "id": 1,
           "interval": "",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
           "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
           "maxDataPoints": 100,
-          "nullPointMode": "null as zero",
-          "nullText": null,
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false,
-            "ymax": null,
-            "ymin": null
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
           },
-          "stack": false,
-          "steppedLine": false,
-          "tableColumn": "",
+          "pluginVersion": "8.1.3",
           "targets": [
             {
               "expr": "sum(namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", namespace=\"$namespace\"}) / sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"})",
@@ -141,74 +127,51 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "70,80",
           "timeFrom": null,
           "timeShift": null,
           "title": "CPU Utilisation (from requests)",
-          "tooltip": {
-            "shared": false,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "No Data",
-              "value": "null"
-            }
-          ],
-          "valueName": "avg",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ]
+          "type": "stat"
         },
         {
-          "aliasColors": {},
-          "bars": false,
           "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "dashLength": 10,
-          "dashes": false,
           "datasource": "$datasource",
-          "decimals": 3,
-          "fill": 1,
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 3,
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "No Data"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 70
+                  },
+                  {
+                    "color": "#d44a3a",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
           },
           "gridPos": {
             "h": 3,
@@ -218,61 +181,24 @@ data:
           },
           "id": 2,
           "interval": "",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
           "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
           "maxDataPoints": 100,
-          "nullPointMode": "null as zero",
-          "nullText": null,
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false,
-            "ymax": null,
-            "ymin": null
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
           },
-          "stack": false,
-          "steppedLine": false,
-          "tableColumn": "",
+          "pluginVersion": "8.1.3",
           "targets": [
             {
               "expr": "sum(namespace_pod_name_container_name:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", namespace=\"$namespace\"}) / sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"})",
@@ -282,73 +208,50 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "70,80",
           "timeFrom": null,
           "timeShift": null,
           "title": "CPU Utilisation (from limits)",
-          "tooltip": {
-            "shared": false,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "No Data",
-              "value": "null"
-            }
-          ],
-          "valueName": "avg",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ]
+          "type": "stat"
         },
         {
-          "aliasColors": {},
-          "bars": false,
           "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "dashLength": 10,
-          "dashes": false,
           "datasource": "$datasource",
-          "fill": 1,
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "No Data"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 70
+                  },
+                  {
+                    "color": "#d44a3a",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
           },
           "gridPos": {
             "h": 3,
@@ -358,61 +261,24 @@ data:
           },
           "id": 3,
           "interval": null,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
           "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
           "maxDataPoints": 100,
-          "nullPointMode": "null as zero",
-          "nullText": null,
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false,
-            "ymax": null,
-            "ymin": null
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
           },
-          "stack": false,
-          "steppedLine": false,
-          "tableColumn": "",
+          "pluginVersion": "8.1.3",
           "targets": [
             {
               "expr": "sum(container_memory_working_set_bytes{cluster=\"$cluster\", namespace=\"$namespace\",container_name!=\"\"}) / sum(kube_pod_container_resource_requests_memory_bytes{namespace=\"$namespace\"})",
@@ -422,74 +288,51 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "70,80",
           "timeFrom": null,
           "timeShift": null,
           "title": "Memory Utilization (from requests)",
-          "tooltip": {
-            "shared": false,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "No Data",
-              "value": "null"
-            }
-          ],
-          "valueName": "avg",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ]
+          "type": "stat"
         },
         {
-          "aliasColors": {},
-          "bars": false,
           "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "dashLength": 10,
-          "dashes": false,
           "datasource": "$datasource",
-          "decimals": 3,
-          "fill": 1,
-          "format": "percentunit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 3,
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "No Data"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 70
+                  },
+                  {
+                    "color": "#d44a3a",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
           },
           "gridPos": {
             "h": 3,
@@ -499,61 +342,24 @@ data:
           },
           "id": 4,
           "interval": null,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
           "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
           "maxDataPoints": 100,
-          "nullPointMode": "null as zero",
-          "nullText": null,
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false,
-            "ymax": null,
-            "ymin": null
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
           },
-          "stack": false,
-          "steppedLine": false,
-          "tableColumn": "",
+          "pluginVersion": "8.1.3",
           "targets": [
             {
               "expr": "sum(container_memory_working_set_bytes{cluster=\"$cluster\", namespace=\"$namespace\",container_name!=\"\"}) / sum(kube_pod_container_resource_limits_memory_bytes{namespace=\"$namespace\"})",
@@ -563,50 +369,10 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "70,80",
           "timeFrom": null,
           "timeShift": null,
           "title": "Memory Utilisation (from limits)",
-          "tooltip": {
-            "shared": false,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "No Data",
-              "value": "null"
-            }
-          ],
-          "valueName": "avg",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ]
+          "type": "stat"
         },
         {
           "collapsed": false,
@@ -629,6 +395,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -653,9 +425,10 @@ data:
           "links": [],
           "nullPointMode": "null as zero",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -798,7 +571,6 @@ data:
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {},
           "pageSize": null,
           "percentage": false,
           "pointradius": 5,
@@ -815,6 +587,7 @@ data:
           "steppedLine": false,
           "styles": [
             {
+              "$$hashKey": "object:98",
               "alias": "Time",
               "align": "auto",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -822,6 +595,7 @@ data:
               "type": "hidden"
             },
             {
+              "$$hashKey": "object:99",
               "alias": "CPU Usage",
               "align": "auto",
               "colorMode": null,
@@ -837,6 +611,7 @@ data:
               "unit": "short"
             },
             {
+              "$$hashKey": "object:100",
               "alias": "CPU Requests",
               "align": "auto",
               "colorMode": null,
@@ -852,6 +627,7 @@ data:
               "unit": "short"
             },
             {
+              "$$hashKey": "object:101",
               "alias": "CPU Requests %",
               "align": "auto",
               "colorMode": null,
@@ -867,6 +643,7 @@ data:
               "unit": "percentunit"
             },
             {
+              "$$hashKey": "object:102",
               "alias": "CPU Limits",
               "align": "auto",
               "colorMode": null,
@@ -882,6 +659,7 @@ data:
               "unit": "short"
             },
             {
+              "$$hashKey": "object:103",
               "alias": "CPU Limits %",
               "align": "auto",
               "colorMode": null,
@@ -897,6 +675,7 @@ data:
               "unit": "percentunit"
             },
             {
+              "$$hashKey": "object:104",
               "alias": "Pod",
               "align": "auto",
               "colorMode": null,
@@ -905,14 +684,16 @@ data:
               "decimals": 2,
               "link": true,
               "linkTooltip": "Drill down",
-              "linkUrl": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-pod?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell",
+              "linkUrl": "./d/0c2f0c6c0e0c0cccf43e658dfeda09a5/kubernetes-compute-resources-pod-3-11?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell",
               "pattern": "pod",
               "thresholds": [],
               "type": "number",
               "unit": "short"
             },
             {
+              "$$hashKey": "object:105",
               "alias": "Max CPU Utilization",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -928,6 +709,7 @@ data:
               "unit": "short"
             },
             {
+              "$$hashKey": "object:106",
               "alias": "",
               "align": "auto",
               "colorMode": null,
@@ -1007,7 +789,7 @@ data:
             "value_type": "individual"
           },
           "transform": "table",
-          "type": "table",
+          "type": "table-old",
           "xaxis": {
             "buckets": null,
             "mode": "time",
@@ -1055,6 +837,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -1080,9 +868,10 @@ data:
           "links": [],
           "nullPointMode": "null as zero",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1226,7 +1015,6 @@ data:
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {},
           "pageSize": null,
           "percentage": false,
           "pointradius": 5,
@@ -1243,6 +1031,7 @@ data:
           "steppedLine": false,
           "styles": [
             {
+              "$$hashKey": "object:258",
               "alias": "Time",
               "align": "auto",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -1250,6 +1039,7 @@ data:
               "type": "hidden"
             },
             {
+              "$$hashKey": "object:259",
               "alias": "Memory Usage",
               "align": "auto",
               "colorMode": null,
@@ -1265,6 +1055,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:260",
               "alias": "Memory Requests",
               "align": "auto",
               "colorMode": null,
@@ -1280,6 +1071,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:261",
               "alias": "Memory Requests %",
               "align": "auto",
               "colorMode": null,
@@ -1295,6 +1087,7 @@ data:
               "unit": "percentunit"
             },
             {
+              "$$hashKey": "object:262",
               "alias": "Memory Limits",
               "align": "auto",
               "colorMode": null,
@@ -1310,6 +1103,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:263",
               "alias": "Memory Limits %",
               "align": "auto",
               "colorMode": null,
@@ -1325,6 +1119,7 @@ data:
               "unit": "percentunit"
             },
             {
+              "$$hashKey": "object:264",
               "alias": "Memory Usage (RSS)",
               "align": "auto",
               "colorMode": null,
@@ -1340,6 +1135,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:265",
               "alias": "Memory Usage (Cache)",
               "align": "auto",
               "colorMode": null,
@@ -1355,6 +1151,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:266",
               "alias": "Memory Usage (Swap)",
               "align": "auto",
               "colorMode": null,
@@ -1370,6 +1167,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:267",
               "alias": "Pod",
               "align": "auto",
               "colorMode": null,
@@ -1378,14 +1176,16 @@ data:
               "decimals": 2,
               "link": true,
               "linkTooltip": "Drill down",
-              "linkUrl": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-pod?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell",
+              "linkUrl": "./d/0c2f0c6c0e0c0cccf43e658dfeda09a5/kubernetes-compute-resources-pod-3-11?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell",
               "pattern": "pod",
               "thresholds": [],
               "type": "number",
               "unit": "short"
             },
             {
+              "$$hashKey": "object:268",
               "alias": "Max Memory Usage",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1401,6 +1201,7 @@ data:
               "unit": "bytes"
             },
             {
+              "$$hashKey": "object:269",
               "alias": "",
               "align": "auto",
               "colorMode": null,
@@ -1503,7 +1304,7 @@ data:
             "value_type": "individual"
           },
           "transform": "table",
-          "type": "table",
+          "type": "table-old",
           "xaxis": {
             "buckets": null,
             "mode": "time",
@@ -1575,7 +1376,6 @@ data:
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {},
           "pageSize": null,
           "percentage": false,
           "pointradius": 5,
@@ -1782,7 +1582,7 @@ data:
             "value_type": "individual"
           },
           "transform": "table",
-          "type": "table",
+          "type": "table-old",
           "xaxis": {
             "buckets": null,
             "mode": "time",
@@ -1830,6 +1630,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -1855,9 +1661,10 @@ data:
           "links": [],
           "nullPointMode": "null as zero",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -1938,6 +1745,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -1962,10 +1775,8 @@ data:
           "linewidth": 0,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2046,6 +1857,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -2070,10 +1887,8 @@ data:
           "linewidth": 0,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2154,6 +1969,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -2178,10 +1999,8 @@ data:
           "linewidth": 0,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2262,6 +2081,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -2286,10 +2111,8 @@ data:
           "linewidth": 0,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2370,6 +2193,12 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 10,
           "fillGradient": 0,
           "gridPos": {
@@ -2394,10 +2223,8 @@ data:
           "linewidth": 0,
           "links": [],
           "nullPointMode": "null as zero",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "8.1.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2458,18 +2285,20 @@ data:
           }
         }
       ],
-      "refresh": "1m",
-      "schemaVersion": 21,
+      "refresh": "5m",
+      "schemaVersion": 30,
       "style": "dark",
       "tags": [],
       "templating": {
         "list": [
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "Observatorium",
               "value": "Observatorium"
             },
+            "description": null,
+            "error": null,
             "hide": 2,
             "includeAll": false,
             "label": null,
@@ -2485,25 +2314,29 @@ data:
           {
             "allValue": null,
             "current": {
-              "selected": false,
-              "text": "ups-ocp",
-              "value": "ups-ocp"
+              "selected": true,
+              "text": "ups-jb",
+              "value": "ups-jb"
             },
             "datasource": "$datasource",
             "definition": "",
+            "description": null,
+            "error": null,
             "hide": 0,
             "includeAll": false,
             "label": null,
             "multi": false,
             "name": "cluster",
             "options": [],
-            "query": "label_values(kube_pod_info, cluster)",
+            "query": {
+              "query": "label_values(kube_pod_info, cluster)",
+              "refId": "Observatorium-cluster-Variable-Query"
+            },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
             "sort": 1,
             "tagValuesQuery": "",
-            "tags": [],
             "tagsQuery": "",
             "type": "query",
             "useTags": false
@@ -2517,19 +2350,23 @@ data:
             },
             "datasource": "$datasource",
             "definition": "",
+            "description": null,
+            "error": null,
             "hide": 0,
             "includeAll": false,
             "label": null,
             "multi": false,
             "name": "namespace",
             "options": [],
-            "query": "label_values(kube_pod_info{cluster=\"$cluster\"}, namespace)",
+            "query": {
+              "query": "label_values(kube_pod_info{cluster=\"$cluster\"}, namespace)",
+              "refId": "Observatorium-namespace-Variable-Query"
+            },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
             "sort": 1,
             "tagValuesQuery": "",
-            "tags": [],
             "tagsQuery": "",
             "type": "query",
             "useTags": false
@@ -2564,6 +2401,6 @@ data:
       },
       "timezone": "",
       "title": "Kubernetes / Compute Resources / Namespace (Pods) - 3.11",
-      "uid": "9M5qKeqMz",
-      "version": 16
+      "uid": "fc12952e0f6a5dd5b23b1729e03ebfc7",
+      "version": 1
     }
