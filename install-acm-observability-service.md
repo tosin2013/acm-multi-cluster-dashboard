@@ -69,22 +69,16 @@ apiVersion: observability.open-cluster-management.io/v1beta2
 kind: MultiClusterObservability
 metadata:
   name: observability #Your customized name of MulticlusterObservability CR
+apiVersion: observability.open-cluster-management.io/v1beta2
+kind: MultiClusterObservability
+metadata:
+  name: observability
 spec:
-  availabilityConfig: High # Available values are High or Basic
-  imagePullPolicy: Always
-  imagePullSecret: multiclusterhub-operator-pull-secret
-  observabilityAddonSpec: # The ObservabilityAddonSpec defines the global settings for all managed clusters which have observability add-on enabled
-    enableMetrics: true # EnableMetrics indicates the observability addon push metrics to hub server
-    interval: 60 # Interval for the observability addon push metrics to hub server
-  retentionResolution1h: 30d # How long to retain samples of 1 hour in bucket
-  retentionResolution5m: 14d
-  retentionResolutionRaw: 5d
-  storageConfigObject: # Specifies the storage to be used by Observability
+  observabilityAddonSpec: {}
+  storageConfig:
     metricObjectStorage:
       name: thanos-object-storage
       key: thanos.yaml
-    statefulSetSize: 10Gi # The amount of storage applied to the Observability StatefulSets, i.e. Amazon S3 store, Rule, compact and receiver.
-    statefulSetStorageClass: gp2
 YAML
 ```
 
