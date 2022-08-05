@@ -68,10 +68,6 @@ cat >multiclusterobservability_cr.yaml<<YAML
 apiVersion: observability.open-cluster-management.io/v1beta2
 kind: MultiClusterObservability
 metadata:
-  name: observability #Your customized name of MulticlusterObservability CR
-apiVersion: observability.open-cluster-management.io/v1beta2
-kind: MultiClusterObservability
-metadata:
   name: observability
 spec:
   observabilityAddonSpec: {}
@@ -149,10 +145,6 @@ oc create -f thanos-object-storage.yaml -n open-cluster-management-observability
 **Create the MultiClusterObservability custom resource YAML**
 ```
 cat >multiclusterobservability_cr.yaml<<YAML
-apiVersion: observability.open-cluster-management.io/v1beta2
-kind: MultiClusterObservability
-metadata:
-  name: observability #Your customized name of MulticlusterObservability CR
 apiVersion: observability.open-cluster-management.io/v1beta2
 kind: MultiClusterObservability
 metadata:
